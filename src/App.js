@@ -43,6 +43,33 @@ function App() {
     },
   ]
 
+  const company = [
+  {
+    name: 'ООО «Ромашка»',
+    status: '',
+    poststatus: '',
+    id: '1',
+  },
+    {
+    name: 'ООО «Ромашка2»',
+    status: 'active',
+    poststatus: '',
+    id: '2',
+  },
+    {
+    name: 'ООО «Ромашка3»',
+    status: '',
+    poststatus: 'open',
+    id: '3',
+  },
+    {
+    name: 'ООО «Ромашка4»',
+    status: 'active',
+    poststatus: 'open',
+    id: '4',
+  },
+  ]
+
   return (
     <div className="container">
   {/*   {content && content.length ? content.map((item, index) => (
@@ -56,11 +83,16 @@ function App() {
         />
       )) : null} 
   */}
-  <ItemList/>
-  <ItemList/>
-  <ItemList/>
-  <ItemList/>
-  <ItemList/>
+
+  {company && company.length ? company.map((item, index) => (
+        <ItemList
+          key={index}
+          name={item.name}
+          status={item.status}
+          poststatus={item.poststatus}
+          id={item.id}
+        />
+      )) : null} 
     </div>
   )
 }
