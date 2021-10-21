@@ -1,96 +1,80 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-import './App.scss'
-import Item from "./components/Item/Item"
+import './css/global.scss'
 import ItemList from "./components/ItemList/ItemList"
 
 function App() {
-  const content = [
+  const [content, setContent] = useState([
     {
-      date: '03.06.2020',
-      site: 'utinet.ru',
-      text: '<p>Статья рассматривает такую структурную и семантическую единицу драматургического текста, как реплика, которая реализуется, будучи связанной с тремя другими компонентами текста: монологом.</p>',
-      status: 'Открыть согласование',
-      statusId: 1,
+      id: 1,
+      name: 'ООО «Ромашка»',
+      open: false,
+      FormOpen: false,
     },
     {
-      date: '03.06.2020',
-      site: 'utinet.ru',
-      text: '<p>Статья рассматривает такую структурную и семантическую единицу драматургического текста, как реплика, которая реализуется, будучи связанной с тремя другими компонентами текста: монологом.</p>',
-      status: 'Создана',
-      statusId: 2,
+      id: 2,
+      name: 'ООО «Ромашка2»',
+      open: false,
+      FormOpen: false,
     },
     {
-      date: '03.06.2020',
-      site: 'utinet.ru',
-      text: '<p>Статья рассматривает такую структурную и семантическую единицу драматургического текста, как реплика, которая реализуется, будучи связанной с тремя другими компонентами текста: монологом.</p>',
-      status: 'Ожидает согласования',
-      statusId: 3,
+      id: 3,
+      name: 'ООО «Ромашка3»',
+      open: false,
+      FormOpen: false,
     },
     {
-      date: '03.06.2020',
-      site: 'utinet.ru',
-      text: '<p>Статья рассматривает такую структурную и семантическую единицу драматургического текста, как реплика, которая реализуется, будучи связанной с тремя другими компонентами текста: монологом.</p>',
-      status: 'Отклонено',
-      statusId: 4,
+      id: 4,
+      name: 'ООО «Ромашка4»',
+      open: false,
+      FormOpen: false,
     },
-    {
-      date: '03.06.2020',
-      site: 'utinet.ru',
-      text: '<p>Статья рассматривает такую структурную и семантическую единицу драматургического текста, как реплика, которая реализуется, будучи связанной с тремя другими компонентами текста: монологом.</p>',
-      status: 'На размещении',
-      statusId: 5,
-    },
-  ]
+  ])
 
-  const company = [
-  {
-    name: 'ООО «Ромашка»',
-    status: '',
-    poststatus: '',
-    id: '1',
-  },
-    {
-    name: 'ООО «Ромашка2»',
-    status: 'active',
-    poststatus: '',
-    id: '2',
-  },
-    {
-    name: 'ООО «Ромашка3»',
-    status: '',
-    poststatus: 'open',
-    id: '3',
-  },
-    {
-    name: 'ООО «Ромашка4»',
-    status: 'active',
-    poststatus: 'open',
-    id: '4',
-  },
-  ]
+  const clickCompany = (id) => {
+    // const contentCopy = [...content]
+    // const item = contentCopy.find(i => i.id === id)
+    // console.log(item)
+
+    const contentCopy = content.map(item => {
+      if (item.id === id) {
+        item.open = !item.open
+        if (item.FormOpen === true) {
+          item.FormOpen = false
+        }
+      }
+
+      return item
+    })
+
+    setContent(contentCopy)
+  }
+
+  const clickForm = (id) => {
+
+    const contentCopy = content.map(item => {
+      if (item.id === id) {
+        item.FormOpen = !item.FormOpen
+      }
+
+      return item
+    })
+
+    setContent(contentCopy)
+  }
+
 
   return (
     <div className="container">
-  {/*   {content && content.length ? content.map((item, index) => (
-        <Item
-          key={index}
-          date={item.date}
-          site={item.site}
-          text={item.text}
-          status={item.status}
-          statusId={item.statusId}
-        />
-      )) : null} 
-  */}
-
-  {company && company.length ? company.map((item, index) => (
+      {content && content.length ? content.map((item, index) => (
         <ItemList
           key={index}
-          name={item.name}
-          status={item.status}
-          poststatus={item.poststatus}
           id={item.id}
+          name={item.name}
+          open={item.open}
+          formOpen={item.FormOpen}
+          clickCompany={clickCompany}
+          clickForm={clickForm}
         />
       )) : null} 
     </div>

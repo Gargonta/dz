@@ -1,0 +1,110 @@
+@import "../../css/global";
+
+.FormPlus {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  display: none;
+  width: 100%;
+  .Top {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 19px;
+    background: $var6;
+    .Title {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 20px;
+      color: #ffffff;
+      margin-left: 16px;
+    }
+  }
+  &[data-open="Y"] {
+    display: block;
+    z-index: 9;
+  }
+}
+.WrapFormPlus {
+  display: flex;
+  align-items: flex-end;
+  padding-right: 31px;
+  padding-bottom: 29px;
+  padding-top: 11px;
+  background: $var8;
+  button {
+    background: $var7;
+    width: 142px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    border: none;
+    line-height: 22px;
+    text-align: center;
+    color: $var2;
+  }
+}
+.WrapInput {
+  position: relative;
+  span {
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    margin-left: 39px;
+    line-height: 14px;
+    color: $var6;
+    &.TypeSelect {
+      position: absolute;
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      bottom: 0;
+      right: 0;
+      margin-left: 0;
+      width: 60px;
+      height: 60px;
+      z-index: 1;
+    }
+  }
+  input {
+    background: $var2;
+    border: 1px solid $var9;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 11px $var10;
+    border-radius: 0;
+    height: 60px;
+    padding: 0 39px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    color: $var7;
+  }
+  &.Login {
+    width: 32.13%;
+    input {
+      border-radius: 0 0 0 10px;
+      width: 100%;
+    }
+  }
+  &.Email {
+    width: 32.13%;
+    input {
+      width: 100%;
+    }
+  }
+  &.Password {
+    width: 25.3%;
+    input {
+      width: 100%;
+    }
+  }
+}

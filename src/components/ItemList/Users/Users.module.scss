@@ -1,0 +1,125 @@
+@import "../../../css/global";
+
+.Users {
+  background: $var5;
+  width: 100%;
+}
+.ContentTop {
+  position: relative;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  padding-left: 38px;
+  align-items: flex-end;
+  justify-content: space-between;
+  .Title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: $var6;
+  }
+  .Plus {
+    width: 72px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $var7;
+    cursor: pointer;
+    .in {
+      display: block;
+    }
+    .out {
+      display: none;
+    }
+    &[data-open="Y"] .in {
+      display: none;
+    }
+    &[data-open="Y"] .out {
+      display: block;
+    }
+  }
+}
+
+
+.TableContentItem {
+  width: 100%;
+  margin-top: 15px;
+  border-collapse: collapse;
+  th {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: left;
+    color: $var6;
+  }
+  .Head1 {
+    width: 25.7%;
+    padding-left: 37px;
+  }
+  .Head2 {
+    width: 55.36%;
+  }
+  .Head3 {
+    width: 3.67%;
+    min-width: 20px;
+  }
+  .Head4 {
+    width: 100px;
+  }
+  .Head5 {
+    width: 60px;
+  }
+  tr td {
+    height: 60px;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    box-shadow: 0 10px 24px $var10;
+    color: $var11;
+    &:first-child {
+      padding-left: 68px;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      color: $var7;
+    }
+  }
+  tbody tr {
+    position: relative;
+    border-top: 1px solid $var3;
+    border-bottom: 1px solid $var3;
+    &:after {
+      position: absolute;
+      content: '';
+      top: 0;
+      right: 0;
+      height: 100%;
+      background: $var6;
+      width: 6px;
+    }
+    &.Active:after {
+      position: absolute;
+      content: '';
+      top: 0;
+      right: 0;
+      height: 100%;
+      background: $var12;
+      width: 6px;
+    }
+    &:nth-child(even) {
+      background: $var13;
+    }
+  }
+}
+tr.Active td.Status {
+  color: $var12;
+}
+tr.Active td.Delete svg {
+  stroke: $var14;
+}
