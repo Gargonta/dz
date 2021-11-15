@@ -1,48 +1,4 @@
-@import "../../../css/global";
-
-.Users {
-  background: $var5;
-  width: 100%;
-}
-.ContentTop {
-  position: relative;
-  height: 60px;
-  width: 100%;
-  display: flex;
-  padding-left: 38px;
-  align-items: flex-end;
-  justify-content: space-between;
-  .Title {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 29px;
-    color: $var6;
-  }
-  .Plus {
-    width: 72px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: $var7;
-    cursor: pointer;
-    .in {
-      display: block;
-    }
-    .out {
-      display: none;
-    }
-    &[data-open="Y"] .in {
-      display: none;
-    }
-    &[data-open="Y"] .out {
-      display: block;
-    }
-  }
-}
-
-
+@import "../../css/global";
 
 .TableContentItem {
   width: 100%;

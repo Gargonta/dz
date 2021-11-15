@@ -2,7 +2,7 @@ import React from "react"
 import classes from "./ItemList.module.scss"
 import Users from "./Users/Users"
 
-export default function ItemList({id, name, open, formOpen, clickCompany, clickForm}) {
+export default function ItemList({id, name, open, formOpen, clickCompany, clickForm, fields, changeFieldsForm, showPassword, toggleShowPassword, send, users}) {
 	return (
 		<div className={classes.ItemList}>
 			<div
@@ -24,6 +24,12 @@ export default function ItemList({id, name, open, formOpen, clickCompany, clickF
 					formOpen={formOpen}
 					clickForm={clickForm}
 					id={id}
+					fields={fields}
+					changeFieldsForm={changeFieldsForm}
+					showPassword={showPassword}
+					toggleShowPassword={toggleShowPassword}
+					send={send}
+					users={users}
 				/>
 			) : null}
 		</div>
