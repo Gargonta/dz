@@ -10,11 +10,6 @@ function App() {
       name: 'ООО «Ромашка»',
       open: false,
       FormOpen: false,
-      fields: {
-        name: '111',
-        email: '23123',
-        password: '',
-      },
       showPassword: false,
       users: [
         {
@@ -44,11 +39,6 @@ function App() {
       name: 'ООО «Ромашка2»',
       open: false,
       FormOpen: false,
-      fields: {
-        name: '222',
-        email: '',
-        password: '',
-      },
       showPassword: false,
       users: [
         {
@@ -58,6 +48,8 @@ function App() {
           password: '',
           role: 'Клиент (аналитик)123',
           status: false,
+          formEditor: false,
+          formDelete: false,
         },
         {
           id: 2,
@@ -66,6 +58,8 @@ function App() {
           password: '',
           role: 'Клиент (аналитик)6325',
           status: true,
+          formEditor: false,
+          formDelete: false,
         },
       ],
     },
@@ -74,24 +68,16 @@ function App() {
       name: 'ООО «Ромашка3»',
       open: false,
       FormOpen: false,
-      fields: {
-        name: '333',
-        email: '',
-        password: '',
-      },
       showPassword: false,
+      users: [],
     },
     {
       id: 4,
       name: 'ООО «Ромашка4»',
       open: false,
       FormOpen: false,
-      fields: {
-        name: '444',
-        email: '',
-        password: '',
-      },
       showPassword: false,
+      users: [],
     },
   ])
 
@@ -115,7 +101,6 @@ function App() {
   }
 
   const clickForm = (id) => {
-
     const contentCopy = content.map(item => {
       if (item.id === id) {
         item.FormOpen = !item.FormOpen
@@ -127,14 +112,16 @@ function App() {
     setContent(contentCopy)
   }
 
-  const changeFieldsForm = (id, name, value) => {
-    // const fieldsCopy = {...fields}
-    // fieldsCopy[name] = value
-    // setFields(fieldsCopy)
-
+  const userEditToggle = (idCompany, idUser) => {
     const contentCopy = content.map(item => {
-      if (item.id === id) {
-        item.fields[name] = value
+      if (item.id === idCompany) {
+        item.users = item.users.map(user => {
+          if (user.id === idUser) {
+            user.formEditor = !user.formEditor
+          }
+
+          return user
+        })
       }
 
       return item
@@ -143,10 +130,21 @@ function App() {
     setContent(contentCopy)
   }
 
-  const toggleShowPassword = (id) => {
+  const userAdd = (id, fields) => {
     const contentCopy = content.map(item => {
       if (item.id === id) {
-        item.showPassword = !item.showPassword
+        item.FormOpen = false
+
+        item.users.push({
+          id: item.users.length + 1,
+          name: fields.name,
+          email: fields.email,
+          password: fields.password,
+          role: 'Клиент',
+          status: true,
+          formEditor: false,
+          formDelete: false,
+        })
       }
 
       return item
@@ -155,9 +153,37 @@ function App() {
     setContent(contentCopy)
   }
 
-  const send = (id) => {
-    const item = content.find(i => i.id === id)
-    console.log(item.fields)
+  const userEdit = (idCompany, idUser, fields) => {
+    const contentCopy = content.map(item => {
+      if (item.id === idCompany) {
+        item.users = item.users.map(user => {
+          if (user.id === idUser) {
+            user.formEditor = false
+            user.name = fields.name
+            user.email = fields.email
+            user.password = fields.password
+          }
+
+          return user
+        })
+      }
+
+      return item
+    })
+
+    setContent(contentCopy)
+  }
+
+  const userDelete = (idCompany, idUser) => {
+    const contentCopy = content.map(item => {
+      if (item.id === idCompany) {
+        item.users = item.users.filter(i => i.id !== idUser)
+      }
+
+      return item
+    })
+
+    setContent(contentCopy)
   }
 
   return (
@@ -171,11 +197,10 @@ function App() {
           formOpen={item.FormOpen}
           clickCompany={clickCompany}
           clickForm={clickForm}
-          fields={item.fields}
-          changeFieldsForm={changeFieldsForm}
-          showPassword={item.showPassword}
-          toggleShowPassword={toggleShowPassword}
-          send={send}
+          userAdd={userAdd}
+          userEdit={userEdit}
+          userDelete={userDelete}
+          userEditToggle={userEditToggle}
           users={item.users}
         />
       )) : null} 

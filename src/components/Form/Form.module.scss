@@ -4,7 +4,8 @@
   position: absolute;
   top: 60px;
   left: 0;
-  display: none;
+  display: block;
+  z-index: 9;
   width: 100%;
   .Top {
     width: 100%;
@@ -21,10 +22,6 @@
       color: #ffffff;
       margin-left: 16px;
     }
-  }
-  &[data-open="Y"] {
-    display: block;
-    z-index: 9;
   }
 }
 .WrapFormPlus {

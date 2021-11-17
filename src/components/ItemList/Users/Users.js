@@ -3,7 +3,7 @@ import classes from "./Users.module.scss"
 import Form from "../../Form/Form"
 import OneUser from "../../OneUser/OneUser"
 
-export default function Users({id,formOpen, clickForm, fields, changeFieldsForm, showPassword, toggleShowPassword, send, users}) {
+export default function Users({id, formOpen, clickForm, userAdd, userEdit, userDelete, userEditToggle, users}) {
     return (
 
         <div className={classes.Users}>
@@ -25,17 +25,12 @@ export default function Users({id,formOpen, clickForm, fields, changeFieldsForm,
                     </svg>
                 </div>
 
-                <Form
-                    formOpen={formOpen}
-                    clickForm={clickForm}
-                    id={id}
-                    fields={fields}
-                    changeFieldsForm={changeFieldsForm}
-                    showPassword={showPassword}
-                    toggleShowPassword={toggleShowPassword}
-                    send={send}
-                />
-
+                {formOpen ? (
+                    <Form
+                        id={id}
+                        userAdd={userAdd}
+                    />
+                ) : null}
             </div>
             <table className={classes.TableContentItem}>
                 <thead>
@@ -52,7 +47,8 @@ export default function Users({id,formOpen, clickForm, fields, changeFieldsForm,
                       {users && users.length ? users.map((item, index) => (
                             <OneUser
                               key={index}
-                              id={item.id}
+                              idCompany={id}
+                              idUser={item.id}
                               name={item.name}
                               email={item.email}
                               password={item.password}
@@ -60,6 +56,9 @@ export default function Users({id,formOpen, clickForm, fields, changeFieldsForm,
                               status={item.status}
                               formEditor={item.formEditor}
                               formDelete={item.formDelete}
+                              userEdit={userEdit}
+                              userDelete={userDelete}
+                              userEditToggle={userEditToggle}
                             />
                           )) : null} 
                 </tbody>
